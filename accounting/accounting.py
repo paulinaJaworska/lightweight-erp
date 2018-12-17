@@ -18,6 +18,10 @@ import data_manager
 # common module
 import common
 
+FILE_NAME = "/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/accounting/items.csv"
+table = data_manager.get_table_from_file(FILE_NAME)
+
+
 
 def start_module():
     """
@@ -29,7 +33,31 @@ def start_module():
         None
     """
 
-    # you code
+    special_features = ["show table", "add record", "remove record", "update", "which year max", "avg amount"]
+    ui.print_menu("Accounting", special_features, "Back to main menu")
+    message = "There is no such option"
+
+    
+
+    choice_input = ui.get_inputs(["Choose a special feature:"], "")
+    choice = choice_input[0]
+    if choice == '1':
+        show_table(table)
+    elif choice == '2':
+        #table = add(table)
+        data_manager.write_table_to_file(FILE_NAME, add(table))
+    elif choice == '3':
+        remove(table, id)
+    elif choice == '4':
+        updatetable(table, id_)
+    elif choice == '5':
+        which_yearmax(table, id)
+    elif choice == '6':
+        avg_amount(table, year)
+    elif choice == '0':
+        main.main()
+    else:
+        ui.print_error_message(message)
 
 
 def show_table(table):
@@ -42,8 +70,7 @@ def show_table(table):
     Returns:
         None
     """
-
-    # your code
+    ui.print_table(table, ["id", "month", "day", "year", "type", "amount"])
 
 
 def add(table):
@@ -56,9 +83,15 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    # your code
-
+    #file_name = "old_lightweight-erp-python-venividivinko/accounting/items.csv"
+    #table = data_manager.get_table_from_file(file_name)
+    id_ = common.generate_random(table)
+    month = ui.get_inputs(["month:"],"")[0]
+    day = ui.get_inputs(["Please give day:"], "")[0]
+    year = ui.get_inputs(["Please give year:"], "")[0]
+    type1 = ui.get_inputs(["Please give type: inflow (in)/outflow (out):"], "")[0]
+    amount = ui.get_inputs(["Please give the amountof transaction in USD:"], "")[0]
+    table.append([id_, month, day, year, type1, amount])
     return table
 
 
@@ -73,8 +106,13 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
+    IDINDEX = 0
 
-    # your code
+    id_ = ui.get_inputs(["Please enter an id: "], "")
+
+    for i in table:
+        if id_ == i[IDINDEX]:
+            table.remove(i)
 
     return table
 

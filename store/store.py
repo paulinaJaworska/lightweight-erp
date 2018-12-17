@@ -28,7 +28,30 @@ def start_module():
         None
     """
 
-    # your code
+    special_features = ["show table", "add record", "remove record", "update", "get counts by manufacturers", "get average by manufacturers"]
+    ui.print_menu("Store", special_features, "Back to main menu")
+    message = "There is no such option"
+
+    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/store/games.csv")
+
+    choice_input = ui.get_inputs(["Choose a special feature:"], "")
+    choice = choice_input[0]
+    if choice == '1':
+        show_table(table)
+    elif choice == '2':
+        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/store/games.csv"), table)
+    elif choice == '3':
+        remove(table, id)
+    elif choice == '4':
+        update(table, id_)
+    elif choice == '5':
+        get_counts_by_manufacturers()
+    elif choice == '6':
+        get_average_by_manufacturer()
+    elif choice == '0':
+        main.main()
+    else:
+        ui.print_error_message(message)
 
 
 def show_table(table):
@@ -42,7 +65,7 @@ def show_table(table):
         None
     """
 
-    # your code
+    ui.print_table(table, ["id", "title", "manufacturer", "price in $", "in stock"])
 
 
 def add(table):

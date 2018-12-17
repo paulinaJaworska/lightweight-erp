@@ -29,7 +29,31 @@ def start_module():
         None
     """
 
-    # your code
+    list_options = ["show table", "add", "remove", "update", "get lowest price item id", "get items sold between"]
+    exit_message = "Back to main menu"
+    message = "There is no such option"
+    title = "sales"
+    ui.print_menu(title, list_options, exit_message)
+    choice_input = ui.get_inputs(["Choose a special feature:"], "")
+    choice = choice_input[0]
+    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/sales/sales.csv")
+
+    if choice == '1':
+        show_table(table)
+    elif choice == '2':
+        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/sales/sales.csv"),table)
+    elif choice == '3':
+        remove(table, id)
+    elif choice == '4':
+        update(table, id_)
+    elif choice == '5':
+        get_lowest_price_item_id(table)
+    elif choice == '6':
+        get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
+    elif choice == '0':
+        main.main()
+    else:
+        ui.print_error_message(message)
 
 
 def show_table(table):
@@ -43,7 +67,7 @@ def show_table(table):
         None
     """
 
-    # your code
+    ui.print_table(table, ["id", "title", "price", "month", "day", "year"])
 
 
 def add(table):

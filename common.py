@@ -2,24 +2,47 @@
 implement commonly used functions here
 """
 
-import random
 
+
+import random
+ID_INDEX = 0
 
 def generate_random(table):
-    """
-    Generates random and unique string. Used for id/key generation:
-         - at least 2 special characters (except: ';'), 2 number, 2 lower and 2 upper case letter
-         - it must be unique in the table (first value in every row is the id)
-
-    Args:
-        table (list): Data table to work on. First columns containing the keys.
-
-    Returns:
-        string: Random and unique string
-    """
-
     generated = ''
 
-    # your code
+    #zmienne, z których losowane będą wartości
+    id_collection = []
+    letters_s = 'qwertyuiopasdfghjklzxcvbnm'
+    letters_b = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+    rn = str(random.randrange(0,10))
+    #funkcje losujące losowe małe i duże litery
+    rls = random.choice(letters_s)
+    rlb = random.choice(letters_b)
+    
+    #generowanie losowego id
+    generated = generated.join([rls, rlb, rn, rn, 'J', rls, '#', '&'])  
+    
+    #stworzenie listy zawierającej wszystkie istniejące numery id z istniejącego pliku
+    for i in table:
+        for k in i:
+            id_collection.append(k)
 
+    #warunek unikalności poprzez porównanie z listą 
+    #jeśli wygenerowany id już istnieje, stwórz nowy
+    while generated in id_collection:
+        generated = generated.join([rls, rlb, rn, rn, 'J', rls, '#', '&'])  #generowanie losowego id
+    
+    #zwróć wygenerowany, unikalny id w formie stringa
     return generated
+    
+
+
+
+
+
+
+
+
+
+    
+
