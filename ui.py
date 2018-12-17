@@ -21,8 +21,45 @@ def print_table(table, title_list):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
+    title_len_list = []
+    for i in range(len(title_list)):
+        title_len_list.append(len(title_list[i]))
 
-    # your goes code
+    table_len_list = []
+    list = []
+    for j in range(len(table[0])):
+        list += (len(table[i][j]) for i in range(len(table))) 
+        table_len_list.append(max(list))
+
+    columns_width = []
+    for i in range(len(title_len_list)):
+        columns_width.append(max(table_len_list[i], title_len_list[i]))
+
+    total_width = 1
+    for x in columns_width:
+        total_width += x + 1
+
+    print("/", "-" * (total_width), "\\")
+
+    header = ""
+    for i in range(len(columns_width)):
+        header += "|" + title_list[i].center(columns_width[i], " ") 
+    header += "|"
+    print(header)
+
+    for i in range(len(table)):
+        separating_line = "|"
+        row = "|"
+        for j in range(len(table[i])):
+            separating_line += "-" * (int(columns_width[j])) + "|"
+        print(separating_line)
+        for j in range(len(table[i])):
+            row += table[i][j].center(int(columns_width[j]), " ") + "|"
+        print(row)
+
+    print("\\", "-" * (total_width), "/")
+
+
 
 
 def print_result(result, label):
@@ -61,7 +98,10 @@ def print_menu(title, list_options, exit_message):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your code
+    print(title)
+    for k, l in enumerate(list_options):
+        print("({}) {}".format(k + 1, l))
+    print("(0)", exit_message)
 
 
 def get_inputs(list_labels, title):
@@ -85,7 +125,9 @@ def get_inputs(list_labels, title):
     """
     inputs = []
 
-    # your code
+    print(title)
+    for i in range(len(list_labels)): #domyślnie liczy od zera
+        inputs.append(input('Enter ' + list_labels[i] + ': ')) 
 
     return inputs
 
@@ -101,4 +143,4 @@ def print_error_message(message):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your code
+    print("Error: {}".format(message))
