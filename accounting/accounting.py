@@ -47,7 +47,8 @@ def start_module():
         #table = add(table)
         data_manager.write_table_to_file(FILE_NAME, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        remove(table, id_)
     elif choice == '4':
         updatetable(table, id_)
     elif choice == '5':
@@ -108,10 +109,10 @@ def remove(table, id_):
     """
     IDINDEX = 0
 
-    id_ = ui.get_inputs(["Please enter an id: "], "")
+    
 
     for i in table:
-        if id_ == i[IDINDEX]:
+        if id_[IDINDEX] in i:
             table.remove(i)
 
     return table
