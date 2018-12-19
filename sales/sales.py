@@ -18,6 +18,7 @@ import data_manager
 # common module
 import common
 
+list = ["title", "price", "month", "day", "year"]
 
 def start_module():
     """
@@ -115,7 +116,14 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    IDINDEX = 0
+    list = []
+    list = list + id_
+    for row in table:
+        if id_[IDINDEX] in row:
+            list = list + ui.get_inputs(labels, "Please provide updated information: ")
+            for i in range(len(row)):
+                row[i] = list[i]
 
     return table
 

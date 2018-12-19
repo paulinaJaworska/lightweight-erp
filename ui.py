@@ -126,7 +126,7 @@ def get_inputs(list_labels, title):
     inputs = []
 
     print(title)
-    for i in range(len(list_labels)): #domyślnie liczy od zera
+    for i in range(len(list_labels)): # domyślnie liczy od zera
         inputs.append(input('Enter ' + list_labels[i] + ': ')) 
 
     return inputs

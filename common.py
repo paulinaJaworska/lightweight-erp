@@ -1,8 +1,7 @@
 """ Common module
 implement commonly used functions here
 """
-
-
+import ui
 
 import random
 ID_INDEX = 0
@@ -34,8 +33,6 @@ def generate_random(table):
     
     #zwróć wygenerowany, unikalny id w formie stringa
     return generated
-    
-
 
 
 
