@@ -18,9 +18,9 @@ import data_manager
 # common module
 import common
 
-FILE_NAME = "/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/accounting/items.csv"
+FILE_NAME = "lightweight-erp-python-venividivinko/accounting/items.csv"
 table = data_manager.get_table_from_file(FILE_NAME)
-
+labels = ["month", "day", "year", "type", "amount"]
 
 
 def start_module():
@@ -47,11 +47,12 @@ def start_module():
         #table = add(table)
         data_manager.write_table_to_file(FILE_NAME, add(table))
     elif choice == '3':
-        remove(table, id)
+        remove(table, id_)
     elif choice == '4':
-        updatetable(table, id_)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        common.update(table, id_)
     elif choice == '5':
-        which_yearmax(table, id)
+        which_yearmax(table, id_)
     elif choice == '6':
         avg_amount(table, year)
     elif choice == '0':
@@ -129,7 +130,14 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    IDINDEX = 0
+    list = []
+    list = list + id_
+    for row in table:
+        if id_[IDINDEX] in row:
+            list = list + ui.get_inputs(labels, "Please provide updated information: ")
+            for i in range(len(row)):
+                row[i] = list[i]
 
     return table
 
