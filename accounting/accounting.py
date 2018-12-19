@@ -47,10 +47,7 @@ def start_module():
         #table = add(table)
         data_manager.write_table_to_file(FILE_NAME, add(table))
     elif choice == '3':
-<<<<<<< HEAD
-=======
         id_ = ui.get_inputs(["Please enter an id: "], "")
->>>>>>> 310c939db98121b284160d2627edf5e9629cc4e2
         remove(table, id_)
     elif choice == '4':
         id_ = ui.get_inputs(["Please enter an id: "], "")
