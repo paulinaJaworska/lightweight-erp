@@ -18,7 +18,7 @@ import data_manager
 # common module
 import common
 
-FILE_NAME = "lightweight-erp-python-venividivinko/accounting/items.csv"
+FILE_NAME = "accounting/items.csv"
 table = data_manager.get_table_from_file(FILE_NAME)
 labels = ["month", "day", "year", "type", "amount"]
 
