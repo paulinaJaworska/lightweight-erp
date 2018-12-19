@@ -17,7 +17,8 @@ import data_manager
 # common module
 import common
 
-labels = ["name", "manufacturer", "purchase_year", "durability"]
+FILE_NAME_3 = "inventory/inventory.csv"
+table = data_manager.get_table_from_file(FILE_NAME_3)
 
 def start_module():
     """
@@ -34,14 +35,15 @@ def start_module():
     message = "There is no such option"
     choice_input = ui.get_inputs(["Choose a special feature:"], "")
     choice = choice_input[0]
-    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/inventory/inventory.csv")
+    
 
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/inventory/inventory.csv") ,table)
+        data_manager.write_table_to_file(FILE_NAME_3, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        data_manager.write_table_to_file(FILE_NAME_3, common.delete_item(id_, table))
     elif choice == '4':
         update(table, id_)
     elif choice == '5':
@@ -79,7 +81,12 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id_ = common.generate_random(table)
+    console = ui.get_inputs(["Please give console's title:"],"")[0]
+    manufacturer = ui.get_inputs(["Please give manufacturer:"], "")[0]
+    year = ui.get_inputs(["Please give console's purchase year:"], "")[0]
+    durability = ui.get_inputs(["Please give console's durability:"], "")[0]
+    table.append([id_, console, manufacturer, year, durability])
 
     return table
 

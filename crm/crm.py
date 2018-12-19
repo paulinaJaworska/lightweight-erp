@@ -17,6 +17,8 @@ import data_manager
 import common
 
 labels = ["name", "email", "subscribed"]
+FILE_NAME_2 = "crm/customers.csv"
+table = data_manager.get_table_from_file(FILE_NAME_2)
 
 def start_module():
     """
@@ -33,14 +35,15 @@ def start_module():
     message = "There is no such option"
     choice_input = ui.get_inputs(["Choose a special feature:"], "")
     choice = choice_input[0]
-    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/crm/customers.csv")
+    
 
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/crm/customers.csv"),table)
+        data_manager.write_table_to_file(FILE_NAME_2, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        data_manager.write_table_to_file(FILE_NAME_2, common.delete_item(id_, table))
     elif choice == "4":
         update(table, id_)
     elif choice == '5':
@@ -78,7 +81,11 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id_ = common.generate_random(table)
+    name = ui.get_inputs(["Please give name and surname:"],"")[0]
+    email = ui.get_inputs(["Please give email:"], "")[0]
+    subscription = ui.get_inputs(["Type 1 if user subscribed, otherwise 0:"], "")[0]
+    table.append([id_, name, email, subscription])
 
     return table
 

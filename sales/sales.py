@@ -19,6 +19,8 @@ import data_manager
 import common
 
 list = ["title", "price", "month", "day", "year"]
+FILE_NAME_4 = "sales/sales.csv"
+table = data_manager.get_table_from_file(FILE_NAME_4)
 
 def start_module():
     """
@@ -37,14 +39,15 @@ def start_module():
     ui.print_menu(title, list_options, exit_message)
     choice_input = ui.get_inputs(["Choose a special feature:"], "")
     choice = choice_input[0]
-    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/sales/sales.csv")
+    
 
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/sales/sales.csv"),table)
+        data_manager.write_table_to_file(FILE_NAME_4, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        data_manager.write_table_to_file(FILE_NAME_4, common.delete_item(id_, table))
     elif choice == '4':
         update(table, id_)
     elif choice == '5':
@@ -82,7 +85,13 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id_ = common.generate_random(table)
+    title = ui.get_inputs(["Please give game's title:"],"")[0]
+    price = ui.get_inputs(["Please give game's price in USD:"], "")[0]
+    month = ui.get_inputs(["Please give month:"], "")[0]
+    day = ui.get_inputs(["Please give day:"], "")[0]
+    year = ui.get_inputs(["Please give year:"], "")[0]
+    table.append([id_, title, price, month, day, year])
 
     return table
 

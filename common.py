@@ -33,6 +33,15 @@ def generate_random(table):
     
     #zwróć wygenerowany, unikalny id w formie stringa
     return generated
+    
+def delete_item(id_, table):    
+    IDINDEX = 0
+    for i in table:             #wchodzi do listy list 
+        if id_[IDINDEX] in i:   #jeżeli wpisane id znajduje się w liście
+            table.remove(i)     #usuń tą listę
+
+    return table                #zwróć zaktualizowaną listę list
+
 
 
 

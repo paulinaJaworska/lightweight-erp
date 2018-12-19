@@ -48,7 +48,7 @@ def start_module():
         data_manager.write_table_to_file(FILE_NAME, add(table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
-        remove(table, id_)
+        data_manager.write_table_to_file(FILE_NAME, common.delete_item(id_, table))
     elif choice == '4':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         common.update(table, id_)
@@ -85,10 +85,9 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-    #file_name = "old_lightweight-erp-python-venividivinko/accounting/items.csv"
-    #table = data_manager.get_table_from_file(file_name)
     id_ = common.generate_random(table)
-    month = ui.get_inputs(["month:"],"")[0]
+    labels = ["month","day","year","type","ammount"]
+    month = ui.get_inputs(["Please give month:"],"")[0]
     day = ui.get_inputs(["Please give day:"], "")[0]
     year = ui.get_inputs(["Please give year:"], "")[0]
     type1 = ui.get_inputs(["Please give type: inflow (in)/outflow (out):"], "")[0]
@@ -108,15 +107,8 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-    IDINDEX = 0
-
+    return common.delete_item(id_, table)
     
-
-    for i in table:
-        if id_[IDINDEX] in i:
-            table.remove(i)
-
-    return table
 
 
 def update(table, id_):

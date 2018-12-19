@@ -16,6 +16,8 @@ import data_manager
 import common
 
 lables = ["name", "birth_year"]
+FILE_NAME_1 = "hr/persons.csv"
+table = data_manager.get_table_from_file(FILE_NAME_1)
 
 def start_module():
     """
@@ -33,16 +35,17 @@ def start_module():
     ui.print_menu(title, list_options, exit_message)
     message = "There is no such option"
    
-    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/hr/persons.csv")
+    
     
     choice_input = ui.get_inputs(["Choose a special feature:"], "")
     choice = choice_input[0]
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/hr/persons.csv"), table)
+        data_manager.write_table_to_file(FILE_NAME_1, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        data_manager.write_table_to_file(FILE_NAME_1, common.delete_item(id_, table))
     elif choice == '4':
         update(table, id_)
     elif choice == '5':
@@ -79,13 +82,15 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    # your code
+    id_ = common.generate_random(table)
+    name = ui.get_inputs(["Please give name and surname:"],"")[0]
+    year = ui.get_inputs(["Please give birth year:"], "")[0]
+    table.append([id_, name, year])
 
     return table
 
 
-def remove(table, id_):
+#def remove(table, id_):
     """
     Remove a record with a given id from the table.
 
@@ -99,7 +104,7 @@ def remove(table, id_):
 
     # your code
 
-    return table
+
 
 
 def update(table, id_):

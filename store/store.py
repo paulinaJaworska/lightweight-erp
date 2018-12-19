@@ -18,6 +18,8 @@ import data_manager
 import common
 
 labels = ["title", "manufacturer", "price", "in_stock"]
+FILE_NAME_5 = "store/games.csv"
+table = data_manager.get_table_from_file(FILE_NAME_5)
 
 def start_module():
     """
@@ -33,16 +35,17 @@ def start_module():
     ui.print_menu("Store", special_features, "Back to main menu")
     message = "There is no such option"
 
-    table = data_manager.get_table_from_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/store/games.csv")
+    
 
     choice_input = ui.get_inputs(["Choose a special feature:"], "")
     choice = choice_input[0]
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        add(data_manager.write_table_to_file("/home/kamoor13/Pulpit/ERP/lightweight-erp-python-venividivinko/store/games.csv"), table)
+        data_manager.write_table_to_file(FILE_NAME_5, add(table))
     elif choice == '3':
-        remove(table, id)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        data_manager.write_table_to_file(FILE_NAME_5, common.delete_item(id_, table))
     elif choice == '4':
         update(table, id_)
     elif choice == '5':
@@ -80,7 +83,12 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id_ = common.generate_random(table)
+    title = ui.get_inputs(["Please give game's title:"],"")[0]
+    manufacturer = ui.get_inputs(["Please give manufacturer:"], "")[0]
+    price = ui.get_inputs(["Please give game's price in USD:"], "")[0]
+    stock = ui.get_inputs(["Please give game's ammount in stock:"], "")[0]
+    table.append([id_, title, manufacturer, price, stock])
 
     return table
 
