@@ -45,7 +45,7 @@ def start_module():
         show_table(table)
     elif choice == '2':
         #table = add(table)
-        data_manager.write_table_to_file(FILE_NAME, common.add_item(labels, id_, table))
+        data_manager.write_table_to_file(FILE_NAME, common.add_item(labels, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME, common.delete_item(id_, table))

@@ -40,7 +40,7 @@ def start_module():
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        data_manager.write_table_to_file(FILE_NAME_2, add(table))
+        data_manager.write_table_to_file(FILE_NAME_2, common.add_item(labels, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME_2, common.delete_item(id_, table))
@@ -80,12 +80,6 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    id_ = common.generate_random(table)
-    name = ui.get_inputs(["Please give name and surname:"],"")[0]
-    email = ui.get_inputs(["Please give email:"], "")[0]
-    subscription = ui.get_inputs(["Type 1 if user subscribed, otherwise 0:"], "")[0]
-    table.append([id_, name, email, subscription])
 
     return table
 

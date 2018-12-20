@@ -42,7 +42,7 @@ def start_module():
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        data_manager.write_table_to_file(FILE_NAME_1, add(table))
+        data_manager.write_table_to_file(FILE_NAME_1, common.add_item(labels, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME_1, common.delete_item(id_, table))
@@ -82,11 +82,6 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-    id_ = common.generate_random(table)
-    name = ui.get_inputs(["Please give name and surname:"],"")[0]
-    year = ui.get_inputs(["Please give birth year:"], "")[0]
-    table.append([id_, name, year])
-
     return table
 
 
