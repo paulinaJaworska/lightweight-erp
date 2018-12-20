@@ -45,19 +45,19 @@ def start_module():
         show_table(table)
     elif choice == '2':
         #table = add(table)
-        data_manager.write_table_to_file(FILE_NAME, common.add_item(labels, id_, table))
+        data_manager.write_table_to_file(FILE_NAME, common.add_item(labels, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME, common.delete_item(id_, table))
     elif choice == '4':
         id_ = ui.get_inputs(["Please enter an id: "], "")
-        common.update(table, id_)
+        common.update(id_, table, labels)
     elif choice == '5':
         which_yearmax(table, id_)
     elif choice == '6':
         avg_amount(table, year)
     elif choice == '0':
-        main.main()
+        common.menu_back()
     else:
         ui.print_error_message(message)
 
@@ -114,7 +114,8 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
-
+    return table
+    """
     IDINDEX = 0
     list = []
     list = list + id_
@@ -125,7 +126,7 @@ def update(table, id_):
                 row[i] = list[i]
 
     return table
-
+"""
 
 # special functions:
 # ------------------

@@ -42,18 +42,19 @@ def start_module():
     if choice == '1':
         show_table(table)
     elif choice == '2':
-        data_manager.write_table_to_file(FILE_NAME_5, add(table))
+        data_manager.write_table_to_file(FILE_NAME_5, common.add_item(labels, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME_5, common.delete_item(id_, table))
     elif choice == '4':
-        update(table, id_)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        common.update(id_, table, labels)
     elif choice == '5':
         get_counts_by_manufacturers()
     elif choice == '6':
         get_average_by_manufacturer()
     elif choice == '0':
-        main.main()
+        common.menu_back()
     else:
         ui.print_error_message(message)
 
@@ -82,13 +83,6 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    id_ = common.generate_random(table)
-    title = ui.get_inputs(["Please give game's title:"],"")[0]
-    manufacturer = ui.get_inputs(["Please give manufacturer:"], "")[0]
-    price = ui.get_inputs(["Please give game's price in USD:"], "")[0]
-    stock = ui.get_inputs(["Please give game's ammount in stock:"], "")[0]
-    table.append([id_, title, manufacturer, price, stock])
 
     return table
 
