@@ -42,6 +42,13 @@ def delete_item(id_, table):
 
     return table                #zwróć zaktualizowaną listę list
 
+def add_item(labels, id_, table):
+    id_ = common.generate_random(table)                                         #załaduj unikalny ID
+    new_record = ui.get_inputs(labels, "Now enter following information")       #wprowadzenie danych z terminala
+    new_record.insert(0,id_)                                                    #dodaj dane do listy
+    table.append(new_record)                                                    #zaktualizuj listę list o nową listę
+    return table                                                                #zwróć zaktualizowaną listę list
+
 
 
 

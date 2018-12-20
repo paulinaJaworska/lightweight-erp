@@ -20,7 +20,7 @@ import common
 
 FILE_NAME = "accounting/items.csv"
 table = data_manager.get_table_from_file(FILE_NAME)
-labels = ["month", "day", "year", "type", "amount"]
+labels = ["month", "day", "year", "type", "amount in USD"]
 
 
 def start_module():
@@ -45,7 +45,7 @@ def start_module():
         show_table(table)
     elif choice == '2':
         #table = add(table)
-        data_manager.write_table_to_file(FILE_NAME, add(table))
+        data_manager.write_table_to_file(FILE_NAME, common.add_item(labels, id_, table))
     elif choice == '3':
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME, common.delete_item(id_, table))
@@ -85,14 +85,6 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-    id_ = common.generate_random(table)
-    labels = ["month","day","year","type","ammount"]
-    month = ui.get_inputs(["Please give month:"],"")[0]
-    day = ui.get_inputs(["Please give day:"], "")[0]
-    year = ui.get_inputs(["Please give year:"], "")[0]
-    type1 = ui.get_inputs(["Please give type: inflow (in)/outflow (out):"], "")[0]
-    amount = ui.get_inputs(["Please give the amountof transaction in USD:"], "")[0]
-    table.append([id_, month, day, year, type1, amount])
     return table
 
 
