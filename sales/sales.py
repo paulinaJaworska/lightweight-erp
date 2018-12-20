@@ -49,13 +49,14 @@ def start_module():
         id_ = ui.get_inputs(["Please enter an id: "], "")
         data_manager.write_table_to_file(FILE_NAME_4, common.delete_item(id_, table))
     elif choice == '4':
-        update(table, id_)
+        id_ = ui.get_inputs(["Please enter an id: "], "")
+        common.update(id_, table, labels)
     elif choice == '5':
         get_lowest_price_item_id(table)
     elif choice == '6':
         get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
     elif choice == '0':
-        main.main()
+        common.menu_back()
     else:
         ui.print_error_message(message)
 

@@ -2,7 +2,7 @@
 implement commonly used functions here
 """
 import ui
-
+import main
 import random
 ID_INDEX = 0
 
@@ -49,9 +49,20 @@ def add_item(labels, table):
     table.append(new_record)                                                    #zaktualizuj listę list o nową listę
     return table                                                                #zwróć zaktualizowaną listę list
 
+def update(id_, table, labels):
+    ID_INDEX = 0
+    list = []
+    list += id_
+    for row in table:
+        if id_[ID_INDEX] in row:
+            list += ui.get_inputs(labels, "Please provide updated information: ")
+            for i in range(len(row)):
+                row[i] = list[i]
 
+    return table
 
-
+def menu_back():
+    main.main()
 
 
 
