@@ -76,6 +76,7 @@ def print_result(result, label):
 
     print(label)
     print(result)
+    print("\n")
 
 
 def print_menu(title, list_options, exit_message):

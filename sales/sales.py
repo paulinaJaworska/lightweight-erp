@@ -151,8 +151,20 @@ def get_lowest_price_item_id(table):
     Returns:
          string: id
     """
+    label = "The id of the item that was sold for the lowest price:"
 
-    # your code
+    j=table[0] # Zapisuje pierwszy wiersz tabeli
+    for i in table: # Iteracja po wszystkich wierszach tabeli
+        if int(i[2])<int(j[2]): # Jesli cena mniejsza,
+            j=i # to zapisz nowy wiersz w pamieci
+        elif int(i[2])==int(j[2]): # Drugi przypadek - cena taka sama, wtedy:
+            alpha_order = [i[1],j[1]] # tworzy dwuelementowa liste tytulow majacych te sama cene
+            alpha_order.sort() # sortuje liste tytulow alfabetycznie
+            if(alpha_order[1]==i[1]): # jesli tytul znajdujacy sie w wierszu i jest dalej w porzadku alfabetycznym,
+                j=i # to zapisz wiersz i w pamieci
+    result = j[0]
+    ui.print_result(result, label)
+    return result # zwroc ID wiersza
 
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
